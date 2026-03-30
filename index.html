@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Quality Bridge Consulting</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --pink:       #e91e8c;
+    --pink-light: #f472b6;
+    --pink-pale:  #fce7f3;
+    --pink-mid:   #fbcfe8;
+    --rose-dark:  #be185d;
+    --ink:        #1a0a12;
+    --ink-soft:   #3d1a2e;
+    --grey:       #6b7280;
+    --grey-light: #f9f5f7;
+    --white:      #ffffff;
+    --border:     #f3d6e8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 72px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo svg { height: 44px; width: auto; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.875rem; font-weight: 500;
+    color: var(--ink-soft); letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--pink); }
+  .nav-cta {
+    background: var(--pink); color: var(--white);
+    border: none; padding: 10px 24px; border-radius: 4px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500;
+    cursor: pointer; transition: background 0.2s; text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--rose-dark); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    padding-top: 72px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 5% 80px 8%;
+    position: relative; z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--pink);
+    margin-bottom: 20px;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4.2rem);
+    font-weight: 700; line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .hero-title em { color: var(--pink); font-style: italic; }
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.75; color: var(--grey);
+    max-width: 480px; margin-bottom: 44px;
+  }
+  .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--pink); color: var(--white);
+    padding: 14px 32px; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--rose-dark); transform: translateY(-1px); }
+  .btn-outline {
+    border: 1.5px solid var(--pink); color: var(--pink);
+    padding: 14px 32px; border-radius: 4px;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { background: var(--pink); color: var(--white); }
+
+  .hero-right {
+    background: linear-gradient(135deg, var(--pink-pale) 0%, #fff0f7 60%, var(--pink-mid) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .hero-bridge-wrap { position: relative; z-index: 2; padding: 40px; }
+  .hero-bridge-wrap svg { width: min(420px, 90%); filter: drop-shadow(0 20px 40px rgba(233,30,140,0.15)); }
+
+  /* floating dots */
+  .hero-dot {
+    position: absolute; border-radius: 50%;
+    background: var(--pink); opacity: 0.12;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+
+  /* ── STATS STRIP ── */
+  .stats {
+    background: var(--ink);
+    padding: 48px 8%;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 700; color: var(--pink-light);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: #d1c4cb; letter-spacing: 0.08em; margin-top: 6px; }
+
+  /* ── SECTION COMMONS ── */
+  section { padding: 96px 8%; }
+  .section-tag {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--pink);
+    display: inline-block; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 700; line-height: 1.15;
+    color: var(--ink); margin-bottom: 20px;
+  }
+  .section-lead {
+    font-size: 1.05rem; line-height: 1.75; color: var(--grey);
+    max-width: 640px;
+  }
+
+  /* ── MISSION / ABOUT ── */
+  .about { background: var(--grey-light); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .about-visual {
+    background: linear-gradient(145deg, var(--pink-pale), var(--pink-mid));
+    border-radius: 8px; padding: 48px;
+    display: flex; flex-direction: column; gap: 28px;
+  }
+  .about-card {
+    background: var(--white); border-radius: 6px; padding: 24px;
+    border-left: 3px solid var(--pink);
+    box-shadow: 0 2px 16px rgba(233,30,140,0.08);
+  }
+  .about-card h4 { font-size: 0.85rem; font-weight: 600; color: var(--pink); margin-bottom: 6px; letter-spacing: 0.06em; }
+  .about-card p { font-size: 0.9rem; line-height: 1.65; color: var(--ink-soft); }
+
+  /* ── WHY US ── */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; margin-top: 52px; }
+  .why-card {
+    border: 1px solid var(--border); border-radius: 8px; padding: 32px 28px;
+    transition: box-shadow 0.25s, transform 0.25s;
+    background: var(--white);
+  }
+  .why-card:hover { box-shadow: 0 12px 32px rgba(233,30,140,0.12); transform: translateY(-4px); }
+  .why-icon { font-size: 2rem; margin-bottom: 16px; }
+  .why-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+  .why-card p { font-size: 0.88rem; line-height: 1.7; color: var(--grey); }
+
+  /* ── SERVICES ── */
+  .services { background: var(--ink); }
+  .services .section-title { color: var(--white); }
+  .services .section-lead { color: #c4a8b8; }
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 52px; }
+  .service-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(244,114,182,0.2);
+    border-radius: 8px; padding: 36px 32px;
+    transition: background 0.25s, border-color 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--pink), var(--pink-light));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { background: rgba(233,30,140,0.07); border-color: rgba(244,114,182,0.4); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 700;
+    color: rgba(244,114,182,0.15); line-height: 1;
+    margin-bottom: 12px;
+  }
+  .service-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--white); margin-bottom: 14px;
+  }
+  .service-card ul { list-style: none; padding: 0; }
+  .service-card ul li {
+    font-size: 0.83rem; color: #c4a8b8; line-height: 1.6;
+    padding: 4px 0; padding-left: 16px; position: relative;
+  }
+  .service-card ul li::before {
+    content: '–'; position: absolute; left: 0; color: var(--pink-light); font-weight: 700;
+  }
+
+  /* ── CLIENTS ── */
+  .clients-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 52px; }
+  .client-tile {
+    background: var(--grey-light); border-radius: 6px; padding: 24px 20px;
+    display: flex; align-items: flex-start; gap: 14px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .client-tile:hover { border-color: var(--pink-light); }
+  .client-tile .icon { font-size: 1.6rem; flex-shrink: 0; margin-top: 2px; }
+  .client-tile p { font-size: 0.88rem; line-height: 1.55; color: var(--ink-soft); font-weight: 400; }
+
+  /* ── DIFFERENTIATORS ── */
+  .diff { background: linear-gradient(135deg, var(--pink-pale) 0%, #fff 60%); }
+  .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 52px; }
+  .diff-list { display: flex; flex-direction: column; gap: 20px; }
+  .diff-item {
+    display: flex; gap: 18px; align-items: flex-start;
+    padding: 20px 24px; background: var(--white);
+    border-radius: 6px; border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(233,30,140,0.04);
+  }
+  .diff-check {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--pink); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; flex-shrink: 0; margin-top: 2px;
+  }
+  .diff-item h4 { font-size: 0.95rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .diff-item p { font-size: 0.85rem; color: var(--grey); line-height: 1.6; }
+  .standards-box {
+    background: var(--ink); border-radius: 8px; padding: 40px;
+    color: var(--white);
+  }
+  .standards-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem; font-weight: 700; color: var(--pink-light); margin-bottom: 20px;
+  }
+  .standard-badge {
+    display: inline-block; background: rgba(244,114,182,0.15);
+    border: 1px solid rgba(244,114,182,0.3);
+    color: var(--pink-light); font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.06em; padding: 6px 14px; border-radius: 20px; margin: 6px 4px;
+  }
+  .standards-box p { font-size: 0.88rem; color: #c4a8b8; line-height: 1.7; margin-top: 20px; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--white); }
+  .contact-inner {
+    max-width: 560px; margin: 52px auto 0;
+    background: var(--grey-light); border-radius: 10px;
+    padding: 52px 48px; border: 1px solid var(--border);
+  }
+  .form-group { margin-bottom: 22px; }
+  .form-group label {
+    display: block; font-size: 0.8rem; font-weight: 500;
+    color: var(--ink-soft); letter-spacing: 0.06em; margin-bottom: 7px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--border); border-radius: 4px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    color: var(--ink); background: var(--white);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--pink); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-submit {
+    width: 100%; padding: 14px; background: var(--pink);
+    color: var(--white); border: none; border-radius: 4px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+    cursor: pointer; transition: background 0.2s; margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--rose-dark); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: #c4a8b8;
+    padding: 60px 8% 36px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+  .footer-brand p { font-size: 0.88rem; line-height: 1.7; color: #9e7a8e; margin-top: 16px; max-width: 280px; }
+  .footer-col h4 {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--pink-light); margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    font-size: 0.85rem; color: #9e7a8e; text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--pink-light); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 0.8rem; color: #5a3b4a;
+  }
+
+  /* ── BANGLADESH MAP SECTION ── */
+  .bd-section {
+    background: var(--ink);
+    padding: 96px 8%;
+    position: relative;
+    overflow: hidden;
+  }
+  .bd-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 50%, rgba(233,30,140,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .bd-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .bd-text { position: relative; z-index: 2; }
+  .bd-text .section-tag { color: var(--pink-light); }
+  .bd-text .section-title { color: var(--white); }
+  .bd-slogan {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-style: italic;
+    color: var(--pink-light);
+    margin: 20px 0 24px;
+    line-height: 1.3;
+  }
+  .bd-text p { font-size: 0.95rem; line-height: 1.75; color: #c4a8b8; max-width: 420px; }
+  .division-list { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .div-badge {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.05em;
+    padding: 6px 14px; border-radius: 20px;
+    background: rgba(244,114,182,0.12);
+    border: 1px solid rgba(244,114,182,0.25);
+    color: var(--pink-light);
+    transition: background 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+  .div-badge.active {
+    background: rgba(233,30,140,0.3);
+    border-color: var(--pink);
+    color: #fff;
+  }
+
+  .bd-canvas-wrap {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #bdCanvas {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    filter: drop-shadow(0 0 30px rgba(233,30,140,0.2));
+  }
+
+  @media(max-width:900px) {
+    .bd-inner { grid-template-columns: 1fr; }
+    .bd-canvas-wrap { order: -1; }
+    #bdCanvas { max-width: 320px; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .delay-1 { animation-delay: 0.1s; opacity: 0; }
+  .delay-2 { animation-delay: 0.25s; opacity: 0; }
+  .delay-3 { animation-delay: 0.4s; opacity: 0; }
+  .delay-4 { animation-delay: 0.55s; opacity: 0; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .about-grid, .diff-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media(max-width: 600px) {
+    section { padding: 64px 5%; }
+    .stats { grid-template-columns: repeat(2,1fr); padding: 36px 5%; }
+    .footer-top { grid-template-columns: 1fr; }
+    nav { padding: 0 5%; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 60">
+      <defs>
+        <linearGradient id="ng" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color:#f472b6"/>
+          <stop offset="100%" style="stop-color:#be185d"/>
+        </linearGradient>
+      </defs>
+      <!-- mini bridge -->
+      <rect x="4" y="38" width="72" height="3" fill="url(#ng)" rx="1"/>
+      <rect x="18" y="18" width="5" height="23" fill="url(#ng)" rx="1"/>
+      <rect x="55" y="18" width="5" height="23" fill="url(#ng)" rx="1"/>
+      <path d="M 5 32 Q 40 12 76 32" stroke="#f472b6" stroke-width="1.5" fill="none"/>
+      <line x1="28" y1="40" x2="28" y2="25" stroke="#f472b6" stroke-width="0.9" opacity="0.7"/>
+      <line x1="40" y1="40" x2="40" y2="19" stroke="#f472b6" stroke-width="0.9" opacity="0.7"/>
+      <line x1="52" y1="40" x2="52" y2="25" stroke="#f472b6" stroke-width="0.9" opacity="0.7"/>
+      <!-- text -->
+      <text x="88" y="28" font-family="Georgia,serif" font-size="14" font-weight="700" fill="#1a0a12" letter-spacing="1">QUALITY BRIDGE</text>
+      <text x="89" y="44" font-family="Georgia,serif" font-size="8" fill="#be185d" letter-spacing="4">CONSULTING</text>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#clients">Clients</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow fade-up delay-1">Bangladesh · Global Standards</p>
+    <h1 class="hero-title fade-up delay-2">
+      Building <em>Resilient,</em><br/>Safe &amp; Sustainable<br/>Businesses
+    </h1>
+    <p class="hero-desc fade-up delay-3">
+      A specialized consulting firm advancing hygiene, safety, and sustainability across food &amp; agribusiness, pharmaceuticals, healthcare, and environmental systems — delivering globally aligned solutions for competitive, regulated industries.
+    </p>
+    <div class="hero-actions fade-up delay-4">
+      <a href="#services" class="btn-primary">Explore Services</a>
+      <a href="#contact" class="btn-outline">Talk to Us</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-dot" style="width:180px;height:180px;top:-40px;right:-40px;animation-delay:0s"></div>
+    <div class="hero-dot" style="width:100px;height:100px;bottom:60px;left:30px;animation-delay:2s"></div>
+    <div class="hero-dot" style="width:60px;height:60px;top:40%;right:60px;animation-delay:4s"></div>
+    <div class="hero-bridge-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300">
+        <defs>
+          <linearGradient id="hbg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#f472b6"/>
+            <stop offset="100%" style="stop-color:#be185d"/>
+          </linearGradient>
+          <linearGradient id="hcg" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#fbcfe8;stop-opacity:0.4"/>
+            <stop offset="50%" style="stop-color:#ec4899"/>
+            <stop offset="100%" style="stop-color:#fbcfe8;stop-opacity:0.4"/>
+          </linearGradient>
+          <filter id="glow2">
+            <feGaussianBlur stdDeviation="3" result="cb"/>
+            <feMerge><feMergeNode in="cb"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- water -->
+        <rect x="0" y="210" width="420" height="90" fill="#fce7f3" rx="4"/>
+        <path d="M0 215 Q105 205 210 215 Q315 225 420 215" stroke="#f9a8c9" stroke-width="1.5" fill="none" opacity="0.5"/>
+        <path d="M0 228 Q80 220 180 228 Q280 236 420 226" stroke="#f9a8c9" stroke-width="1" fill="none" opacity="0.3"/>
+        <!-- deck -->
+        <rect x="10" y="200" width="400" height="10" fill="url(#hbg)" rx="2" filter="url(#glow2)"/>
+        <!-- left tower -->
+        <rect x="78" y="100" width="14" height="110" fill="url(#hbg)" rx="2"/>
+        <rect x="65" y="120" width="40" height="8" fill="url(#hbg)" rx="2"/>
+        <rect x="72" y="93" width="22" height="10" fill="#be185d" rx="2"/>
+        <!-- right tower -->
+        <rect x="328" y="100" width="14" height="110" fill="url(#hbg)" rx="2"/>
+        <rect x="315" y="120" width="40" height="8" fill="url(#hbg)" rx="2"/>
+        <rect x="322" y="93" width="22" height="10" fill="#be185d" rx="2"/>
+        <!-- cables -->
+        <path d="M 12 175 Q 210 68 408 175" stroke="url(#hcg)" stroke-width="3" fill="none" filter="url(#glow2)"/>
+        <!-- hangers -->
+        <line x1="50"  y1="200" x2="50"  y2="168" stroke="#f472b6" stroke-width="1.5" opacity="0.6"/>
+        <line x1="85"  y1="200" x2="85"  y2="128" stroke="#f472b6" stroke-width="1.5" opacity="0.6"/>
+        <line x1="120" y1="200" x2="120" y2="106" stroke="#f472b6" stroke-width="1.5" opacity="0.6"/>
+        <line x1="155" y1="200" x2="155" y2="92"  stroke="#f472b6" stroke-width="1.5" opacity="0.6"/>
+        <line x1="210" y1="200" x2="210" y2="82"  stroke="#f472b6" stroke-width="1.5" opacity="0.6"/>
+        <line x1="265" y1="200" x2="265" y2="92"  stroke="#f472b6" stroke-width="1.5" opacity="0.6"/>
+        <line x1="300" y1="200" x2="300" y2="106" stroke="#f472b6" stroke-width="1.5" opacity="0.6"/>
+        <line x1="335" y1="200" x2="335" y2="128" stroke="#f472b6" stroke-width="1.5" opacity="0.6"/>
+        <line x1="370" y1="200" x2="370" y2="168" stroke="#f472b6" stroke-width="1.5" opacity="0.6"/>
+        <!-- anchorage -->
+        <rect x="8" y="193" width="18" height="16" fill="url(#hbg)" rx="2"/>
+        <rect x="394" y="193" width="18" height="16" fill="url(#hbg)" rx="2"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Service Sectors</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-label">Global Standards Aligned</div></div>
+  <div class="stat"><div class="stat-num">360°</div><div class="stat-label">Cross-Sector Expertise</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Tailored Solutions</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <span class="section-tag">Who We Are</span>
+      <h2 class="section-title">A Professional Advisory Firm Built for Bangladesh</h2>
+      <p class="section-lead">
+        Quality Bridge Consulting is dedicated to advancing food safety, industrial hygiene, agribusiness growth, and sustainable development. We combine global best practices with deep local expertise to help companies, SMEs, and development partners comply with regulations, strengthen operations, and unlock new market opportunities.
+      </p>
+      <p class="section-lead" style="margin-top:16px">
+        Our team brings together specialists in food science, pharmaceuticals, agribusiness, industrial safety, environment, and market systems — delivering practical, results-driven solutions.
+      </p>
+    </div>
+    <div class="about-visual">
+      <div class="about-card">
+        <h4>🧭 Our Vision</h4>
+        <p>To be the leading catalyst for hygienic innovation, regulatory excellence, and sustainable development across food, health, and environmental sectors — guided by integrity, innovation, and inclusivity.</p>
+      </div>
+      <div class="about-card">
+        <h4>🎯 Our Mission</h4>
+        <p>To deliver innovative, globally aligned solutions that strengthen resilience, drive market growth, and foster sustainable operations across food &amp; agribusiness, pharmaceuticals, healthcare, and environmental systems.</p>
+      </div>
+      <div class="about-card">
+        <h4>🌍 Our Reach</h4>
+        <p>Bangladesh-focused with global standards alignment — bridging international benchmarks with local market realities for maximum impact.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANGLADESH MAP -->
+<section class="bd-section" id="reach">
+  <div class="bd-inner">
+    <div class="bd-text">
+      <span class="section-tag">Our Reach</span>
+      <h2 class="section-title">Nationwide Presence</h2>
+      <p class="bd-slogan">"Connecting Bangladesh"</p>
+      <p>Quality Bridge Consulting operates across all eight divisions of Bangladesh — bringing expert consulting in food safety, industrial hygiene, sustainability, and market development to every corner of the nation.</p>
+      <div class="division-list">
+        <span class="div-badge" data-div="dhaka">Dhaka</span>
+        <span class="div-badge" data-div="chittagong">Chattogram</span>
+        <span class="div-badge" data-div="rajshahi">Rajshahi</span>
+        <span class="div-badge" data-div="khulna">Khulna</span>
+        <span class="div-badge" data-div="sylhet">Sylhet</span>
+        <span class="div-badge" data-div="barisal">Barishal</span>
+        <span class="div-badge" data-div="rangpur">Rangpur</span>
+        <span class="div-badge" data-div="mymensingh">Mymensingh</span>
+      </div>
+    </div>
+    <div class="bd-canvas-wrap">
+      <canvas id="bdCanvas" width="420" height="520"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <span class="section-tag">What We Do</span>
+  <h2 class="section-title">Core Service Areas</h2>
+  <p class="section-lead">Comprehensive, cross-sectoral consulting designed to deliver measurable outcomes at every scale.</p>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Food &amp; Agribusiness Consulting</h3>
+      <ul>
+        <li>Food Safety &amp; Quality Compliance: HACCP, ISO 22000, BSTI, Codex</li>
+        <li>Cleaning and sanitation program design</li>
+        <li>Biofilm detection, removal, and prevention</li>
+        <li>GMP gap analysis and corrective action planning</li>
+        <li>Hygienic design of equipment and processes</li>
+        <li>Agri-Food Value Chain Development: rice, aquaculture, dairy, poultry</li>
+        <li>Agro-Processing &amp; Export Readiness for EU, Middle East &amp; Asian markets</li>
+        <li>3-A Sanitary Standards support</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>Pharmaceutical, Consumer &amp; Healthcare Solutions</h3>
+      <ul>
+        <li>Cleaning validation and protocol development</li>
+        <li>Cleaning systems design and implementation</li>
+        <li>Sanitary equipment design aligned with ASME BPE</li>
+        <li>Contamination control and microbial risk mitigation</li>
+        <li>Pharma Safety &amp; GMP Compliance</li>
+        <li>Medical Devices &amp; Diagnostics regulatory alignment</li>
+        <li>Herbal, Nutraceutical &amp; Functional Foods market entry</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3>Chemical, Industrial &amp; Manufacturing Hygiene</h3>
+      <ul>
+        <li>Chemical Safety Management and DoE compliance</li>
+        <li>Industrial Hygiene &amp; OSH for RMG, tanneries, shipbreaking</li>
+        <li>CIP systems for food, beverage, dairy, and pharma industries</li>
+        <li>Green Chemistry &amp; Cleaner Production</li>
+        <li>Waste minimization and energy-efficient processes</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <h3>Environment &amp; Sustainability Solutions</h3>
+      <ul>
+        <li>Climate Change Adaptation aligned with Delta Plan 2100</li>
+        <li>Environmental &amp; Social Impact Assessments (ESIA)</li>
+        <li>Circular Economy &amp; Waste-to-Value strategies</li>
+        <li>Water, Sanitation &amp; Hygiene (WASH) advisory</li>
+        <li>Renewable Energy: solar, biogas, and mini-grid solutions</li>
+        <li>ESG strategy development and reporting</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <h3>Business &amp; Market Development</h3>
+      <ul>
+        <li>SME &amp; Women Entrepreneurship capacity building</li>
+        <li>Export &amp; Trade Facilitation for agro-foods and fisheries</li>
+        <li>CSR &amp; ESG: SDG alignment and sustainability reporting</li>
+        <li>Digital Agribusiness &amp; traceability solutions</li>
+        <li>Market entry strategy and feasibility studies</li>
+        <li>Impact Investment &amp; Partnerships with MFIs and blended finance</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <h3>Policy, Training &amp; Capacity Building</h3>
+      <ul>
+        <li>Regulatory policy analysis and advocacy support</li>
+        <li>Custom training: GMP, sanitation, hygienic design, sustainability</li>
+        <li>Capacity building for public and private institutions</li>
+        <li>Workshops, certifications, and e-learning modules</li>
+        <li>Research &amp; Knowledge Management</li>
+        <li>Advocacy: nutrition, women's empowerment, climate awareness</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <span class="section-tag">Who We Serve</span>
+  <h2 class="section-title">Our Target Clients</h2>
+  <p class="section-lead">We partner with a diverse range of organisations across sectors and scales.</p>
+  <div class="clients-grid">
+    <div class="client-tile"><span class="icon">🏭</span><p>Food manufacturers and processors</p></div>
+    <div class="client-tile"><span class="icon">💊</span><p>Pharmaceutical and biotech companies</p></div>
+    <div class="client-tile"><span class="icon">🏥</span><p>Healthcare facilities and consumer goods producers</p></div>
+    <div class="client-tile"><span class="icon">🏛️</span><p>Government agencies, NGOs, and donor organisations</p></div>
+    <div class="client-tile"><span class="icon">🌱</span><p>Sustainability-focused startups and enterprises</p></div>
+    <div class="client-tile"><span class="icon">👩‍💼</span><p>SMEs and women entrepreneurs seeking market access</p></div>
+    <div class="client-tile"><span class="icon">🌾</span><p>Agribusiness value chain actors</p></div>
+    <div class="client-tile"><span class="icon">💼</span><p>Corporations and industry associations</p></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" style="background:var(--grey-light)">
+  <span class="section-tag">Why Quality Bridge</span>
+  <h2 class="section-title">With Expertise Bridging Science,<br/>Policy &amp; Market Growth</h2>
+  <p class="section-lead">We help organisations thrive in competitive, regulated environments through a unique combination of technical depth and strategic thinking.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🇧🇩</div>
+      <h3>Bangladesh-Focused</h3>
+      <p>Deep local market knowledge, aligned with GoB priorities and global donor agendas — we know the landscape.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔬</div>
+      <h3>Deep Technical Expertise</h3>
+      <p>Specialists across hygiene engineering, regulatory compliance, food science, pharma, and environmental systems.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🌐</div>
+      <h3>Cross-Sector Approach</h3>
+      <p>Integrating science, policy, and market strategy across food, pharma, chemicals, and environment simultaneously.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🛠️</div>
+      <h3>Practical Solutions</h3>
+      <p>Hands-on technical support — not just theory. We deliver implementable outcomes that create real value.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📐</div>
+      <h3>Global Standards, Local Relevance</h3>
+      <p>Bridging international benchmarks with local realities — 3-A, ASME BPE, GMP, EHEDG alignment.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🤝</div>
+      <h3>Strong Networks</h3>
+      <p>Connections with SMEs, conglomerates, government agencies, donors, and industry associations across Bangladesh.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<section class="diff" id="differentiators">
+  <span class="section-tag">Our Edge</span>
+  <h2 class="section-title">What Sets Us Apart</h2>
+  <div class="diff-grid">
+    <div class="diff-list">
+      <div class="diff-item">
+        <div class="diff-check">✓</div>
+        <div>
+          <h4>Deep Technical Expertise</h4>
+          <p>Across hygiene engineering, regulatory compliance, and cross-sectoral systems integration.</p>
+        </div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-check">✓</div>
+        <div>
+          <h4>Science × Policy × Market</h4>
+          <p>A truly integrated approach that few consulting firms can offer — bridging all three domains at once.</p>
+        </div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-check">✓</div>
+        <div>
+          <h4>Customisable Solutions</h4>
+          <p>Tailored to client scale and geography — from rural SMEs to multinational corporations.</p>
+        </div>
+      </div>
+      <div class="diff-item">
+        <div class="diff-check">✓</div>
+        <div>
+          <h4>Proven Local-Global Bridge</h4>
+          <p>Translating international standards into actionable, culturally relevant strategies.</p>
+        </div>
+      </div>
+    </div>
+    <div class="standards-box">
+      <h3>Global Standards We Align With</h3>
+      <div>
+        <span class="standard-badge">3-A Sanitary Standards</span>
+        <span class="standard-badge">ASME BPE</span>
+        <span class="standard-badge">GMP</span>
+        <span class="standard-badge">EHEDG</span>
+        <span class="standard-badge">HACCP</span>
+        <span class="standard-badge">ISO 22000</span>
+        <span class="standard-badge">BSTI</span>
+        <span class="standard-badge">Codex Alimentarius</span>
+        <span class="standard-badge">ESG / SDGs</span>
+        <span class="standard-badge">Delta Plan 2100</span>
+      </div>
+      <p>Our alignment with internationally recognised standards ensures your operations meet the highest benchmarks for safety, hygiene, and sustainability — opening doors to global markets and regulatory approval.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div style="text-align:center">
+    <span class="section-tag">Get in Touch</span>
+    <h2 class="section-title">Let's Build Something Together</h2>
+    <p class="section-lead" style="margin:0 auto">Ready to strengthen your operations, navigate regulations, or enter new markets? We'd love to hear from you.</p>
+  </div>
+  <div class="contact-inner">
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" placeholder="Your first name"/>
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" placeholder="Your last name"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" placeholder="you@organisation.com"/>
+    </div>
+    <div class="form-group">
+      <label>Organisation</label>
+      <input type="text" placeholder="Company or institution name"/>
+    </div>
+    <div class="form-group">
+      <label>Service of Interest</label>
+      <select>
+        <option value="">Select a service area...</option>
+        <option>Food &amp; Agribusiness Consulting</option>
+        <option>Pharmaceutical &amp; Healthcare Solutions</option>
+        <option>Chemical, Industrial &amp; Manufacturing Hygiene</option>
+        <option>Environment &amp; Sustainability Solutions</option>
+        <option>Business &amp; Market Development</option>
+        <option>Policy, Training &amp; Capacity Building</option>
+        <option>Multiple / Not Sure</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Message</label>
+      <textarea placeholder="Tell us about your challenge or project..."></textarea>
+    </div>
+    <button class="form-submit">Send Message →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 52" height="48">
+        <defs>
+          <linearGradient id="fg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#f472b6"/>
+            <stop offset="100%" style="stop-color:#be185d"/>
+          </linearGradient>
+        </defs>
+        <rect x="4" y="34" width="60" height="3" fill="url(#fg)" rx="1"/>
+        <rect x="16" y="16" width="5" height="21" fill="url(#fg)" rx="1"/>
+        <rect x="44" y="16" width="5" height="21" fill="url(#fg)" rx="1"/>
+        <path d="M 5 28 Q 34 10 66 28" stroke="#f472b6" stroke-width="1.5" fill="none"/>
+        <line x1="24" y1="37" x2="24" y2="22" stroke="#f472b6" stroke-width="0.9" opacity="0.6"/>
+        <line x1="34" y1="37" x2="34" y2="16" stroke="#f472b6" stroke-width="0.9" opacity="0.6"/>
+        <line x1="44" y1="37" x2="44" y2="22" stroke="#f472b6" stroke-width="0.9" opacity="0.6"/>
+        <text x="76" y="24" font-family="Georgia,serif" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="1">QUALITY BRIDGE</text>
+        <text x="77" y="38" font-family="Georgia,serif" font-size="7" fill="#f472b6" letter-spacing="4">CONSULTING</text>
+      </svg>
+      <p>Advancing hygiene, safety, and sustainability across food, pharma, healthcare, and environmental systems — in Bangladesh and beyond.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Food &amp; Agribusiness</a></li>
+        <li><a href="#services">Pharmaceuticals</a></li>
+        <li><a href="#services">Industrial Hygiene</a></li>
+        <li><a href="#services">Environment</a></li>
+        <li><a href="#services">Market Development</a></li>
+        <li><a href="#services">Training &amp; Policy</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#differentiators">Our Edge</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Standards</h4>
+      <ul>
+        <li><a href="#">3-A Sanitary Standards</a></li>
+        <li><a href="#">ASME BPE</a></li>
+        <li><a href="#">GMP &amp; HACCP</a></li>
+        <li><a href="#">ISO 22000</a></li>
+        <li><a href="#">EHEDG</a></li>
+        <li><a href="#">ESG / SDGs</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Quality Bridge Consulting. All rights reserved.</span>
+    <span>Bangladesh · Global Standards</span>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ── BANGLADESH MAP ANIMATION ──
+  (function() {
+    const canvas = document.getElementById('bdCanvas');
+    const ctx = canvas.getContext('2d');
+    const W = 420, H = 520;
+    canvas.width = W; canvas.height = H;
+
+    // Division capital coordinates (x,y) mapped to canvas space
+    // Bangladesh bounding box: lon 88.0–92.7, lat 20.6–26.6
+    function geo(lon, lat) {
+      const x = ((lon - 88.0) / (92.7 - 88.0)) * (W - 60) + 30;
+      const y = H - 30 - ((lat - 20.6) / (26.6 - 20.6)) * (H - 60);
+      return { x, y };
+    }
+
+    const divisions = [
+      { id: 'dhaka',      name: 'Dhaka',      ...geo(90.4125, 23.8103) },
+      { id: 'chittagong', name: 'Chattogram', ...geo(91.8333, 22.3569) },
+      { id: 'rajshahi',   name: 'Rajshahi',   ...geo(88.6042, 24.3745) },
+      { id: 'khulna',     name: 'Khulna',     ...geo(89.5644, 22.8456) },
+      { id: 'sylhet',     name: 'Sylhet',     ...geo(91.8833, 24.8949) },
+      { id: 'barisal',    name: 'Barishal',   ...geo(90.3696, 22.7010) },
+      { id: 'rangpur',    name: 'Rangpur',    ...geo(89.2825, 25.7439) },
+      { id: 'mymensingh', name: 'Mymensingh', ...geo(90.4272, 24.7471) },
+    ];
+
+    // Connections between all divisions (hub-and-spoke from Dhaka + cross links)
+    const connections = [
+      [0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7],
+      [1,5],[1,3],[2,6],[2,3],[4,7],[5,3],[6,7],[7,2]
+    ];
+
+    // Animated traveling dots per connection
+    const travelers = connections.map(([a,b]) => ({
+      a, b,
+      progress: Math.random(),
+      speed: 0.003 + Math.random() * 0.004,
+      reverse: Math.random() > 0.5,
+      size: 2.5 + Math.random() * 2,
+      alpha: 0.6 + Math.random() * 0.4
+    }));
+
+    // Pulse rings per division
+    const pulses = divisions.map(() => ({
+      r: 0,
+      maxR: 22 + Math.random() * 10,
+      speed: 0.3 + Math.random() * 0.3,
+      alpha: 0.8
+    }));
+
+    let activeDivIdx = -1;
+    let frame = 0;
+
+    // Highlight active division badge on hover
+    const badges = document.querySelectorAll('.div-badge');
+    function setActive(idx) {
+      activeDivIdx = idx;
+      badges.forEach((b, i) => b.classList.toggle('active', i === idx));
+    }
+
+    function drawBangladeshShape() {
+      // Stylised rough outline of Bangladesh
+      ctx.beginPath();
+      // Approximate border path (stylised, not exact)
+      const pts = [
+        geo(92.67,22.49), geo(92.38,21.97), geo(92.18,21.47), geo(91.83,21.27),
+        geo(91.45,21.98), geo(91.02,22.00), geo(90.51,21.88), geo(89.84,21.88),
+        geo(89.49,22.03), geo(89.04,21.90), geo(88.70,22.23), geo(88.53,22.67),
+        geo(88.63,23.18), geo(88.93,23.55), geo(88.73,24.02), geo(88.08,24.30),
+        geo(88.01,24.66), geo(88.33,24.87), geo(88.58,25.17), geo(88.94,25.21),
+        geo(89.37,25.97), geo(89.84,25.94), geo(90.28,25.76), geo(90.65,26.03),
+        geo(91.15,25.95), geo(91.64,25.37), geo(92.03,25.19), geo(92.33,24.67),
+        geo(92.56,24.35), geo(92.64,23.73), geo(92.67,22.49)
+      ];
+      ctx.moveTo(pts[0].x, pts[0].y);
+      pts.forEach(p => ctx.lineTo(p.x, p.y));
+      ctx.closePath();
+
+      // Fill
+      const grad = ctx.createRadialGradient(W/2, H/2, 20, W/2, H/2, 220);
+      grad.addColorStop(0, 'rgba(233,30,140,0.07)');
+      grad.addColorStop(1, 'rgba(190,24,93,0.03)');
+      ctx.fillStyle = grad;
+      ctx.fill();
+
+      // Border
+      ctx.strokeStyle = 'rgba(244,114,182,0.3)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    function drawConnections() {
+      connections.forEach(([a, b]) => {
+        const from = divisions[a], to = divisions[b];
+        ctx.beginPath();
+        ctx.moveTo(from.x, from.y);
+        ctx.lineTo(to.x, to.y);
+        ctx.strokeStyle = 'rgba(244,114,182,0.12)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+    }
+
+    function drawTravelers() {
+      travelers.forEach(t => {
+        const from = divisions[t.a], to = divisions[t.b];
+        const p = t.reverse ? 1 - t.progress : t.progress;
+        const x = from.x + (to.x - from.x) * p;
+        const y = from.y + (to.y - from.y) * p;
+
+        // Glow
+        const grd = ctx.createRadialGradient(x, y, 0, x, y, t.size * 3);
+        grd.addColorStop(0, `rgba(233,30,140,${t.alpha})`);
+        grd.addColorStop(1, 'rgba(233,30,140,0)');
+        ctx.beginPath();
+        ctx.arc(x, y, t.size * 3, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        // Core dot
+        ctx.beginPath();
+        ctx.arc(x, y, t.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${t.alpha})`;
+        ctx.fill();
+
+        // Advance
+        t.progress += t.speed;
+        if (t.progress >= 1) { t.progress = 0; t.reverse = !t.reverse; }
+      });
+    }
+
+    function drawNodes() {
+      divisions.forEach((div, i) => {
+        const isActive = i === activeDivIdx;
+        const pulse = pulses[i];
+
+        // Pulse ring
+        pulse.r += pulse.speed;
+        if (pulse.r > pulse.maxR) { pulse.r = 0; }
+        const pa = (1 - pulse.r / pulse.maxR) * 0.5;
+        ctx.beginPath();
+        ctx.arc(div.x, div.y, pulse.r, 0, Math.PI * 2);
+        ctx.strokeStyle = isActive ? `rgba(233,30,140,${pa * 1.5})` : `rgba(244,114,182,${pa})`;
+        ctx.lineWidth = isActive ? 2 : 1;
+        ctx.stroke();
+
+        // Outer ring
+        ctx.beginPath();
+        ctx.arc(div.x, div.y, isActive ? 10 : 7, 0, Math.PI * 2);
+        ctx.strokeStyle = isActive ? 'rgba(233,30,140,0.8)' : 'rgba(244,114,182,0.4)';
+        ctx.lineWidth = isActive ? 2 : 1;
+        ctx.stroke();
+
+        // Inner dot
+        ctx.beginPath();
+        ctx.arc(div.x, div.y, isActive ? 5 : 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = isActive ? '#e91e8c' : '#f472b6';
+        ctx.fill();
+
+        // Label
+        ctx.font = isActive ? '600 11px "DM Sans", sans-serif' : '400 10px "DM Sans", sans-serif';
+        ctx.fillStyle = isActive ? '#ffffff' : 'rgba(252,207,232,0.85)';
+        ctx.textAlign = 'center';
+        ctx.fillText(div.name, div.x, div.y - 14);
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Background
+      ctx.fillStyle = 'rgba(26,10,18,0)';
+      ctx.fillRect(0, 0, W, H);
+
+      drawBangladeshShape();
+      drawConnections();
+      drawTravelers();
+      drawNodes();
+
+      frame++;
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Hover effect on badges
+    badges.forEach((badge, i) => {
+      badge.addEventListener('mouseenter', () => setActive(i));
+      badge.addEventListener('mouseleave', () => setActive(-1));
+    });
+
+    // Auto-cycle through divisions
+    let cycleIdx = 0;
+    setInterval(() => {
+      if (activeDivIdx === -1) {
+        setActive(cycleIdx % divisions.length);
+        setTimeout(() => setActive(-1), 900);
+        cycleIdx++;
+      }
+    }, 1400);
+  })();
+
+  // Scroll-reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.style.opacity = '1';
+        el.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.why-card, .service-card, .client-tile, .diff-item, .about-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
