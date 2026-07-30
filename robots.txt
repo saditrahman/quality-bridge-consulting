@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qualitybridgeconsultancy.com/sitemap.xml
