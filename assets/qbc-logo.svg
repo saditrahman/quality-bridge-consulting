@@ -1,16 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-labelledby="title desc">
   <title id="title">Quality Bridge Consulting</title>
   <desc id="desc">A blue suspension bridge beside the Quality Bridge Consulting wordmark.</desc>
-  <rect width="760" height="180" rx="12" fill="#ffffff"/>
+  <rect width="760" height="180" rx="12" fill="#FFFFFF"/>
   <g transform="translate(24 31)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M10 79 Q89 17 168 79" stroke="#1488cc" stroke-width="7"/>
+    <path d="M10 79 Q89 17 168 79" stroke="#38A3E1" stroke-width="7"/>
     <path d="M10 104 H168" stroke="#061522" stroke-width="9"/>
     <path d="M35 104 V43 M143 104 V43" stroke="#061522" stroke-width="10"/>
-    <path d="M55 104 V61 M76 104 V49 M102 104 V49 M123 104 V61" stroke="#1488cc" stroke-width="3" opacity=".85"/>
+    <path d="M55 104 V61 M76 104 V49 M102 104 V49 M123 104 V61" stroke="#38A3E1" stroke-width="3" opacity=".85"/>
   </g>
   <g transform="translate(228 48)">
     <text x="0" y="41" fill="#061522" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700" letter-spacing="2">QUALITY BRIDGE</text>
-    <text x="2" y="82" fill="#1264a3" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="10">CONSULTING</text>
-    <path d="M2 101 H492" stroke="#cbd9e6" stroke-width="2"/>
+    <text x="2" y="82" fill="#1264A3" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="10">CONSULTING</text>
+    <path d="M2 101 H492" stroke="#CBD9E6" stroke-width="2"/>
   </g>
 </svg>
